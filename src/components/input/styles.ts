@@ -8,13 +8,16 @@ export const Container = styled.View`
 
 export const Label = styled.Text`
   font-size: 18px;
-  width: 90%;
+  width: 100%;
+  padding: 0 20px;
   color: ${({ theme }) => theme.colors.labelInput};
 `;
 
 export const InputContainer = styled.View`
-  width: 90%;
+  width: 100%;
   align-items: center;
+  flex: 1;
+  padding: 0 20px;
 `;
 
 export const InputText = styled.TextInput`

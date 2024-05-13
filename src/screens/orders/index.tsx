@@ -12,7 +12,6 @@ const Orders = () => {
   return (
     <Container>
       <Input label="Cliente" />
-      <Input label="Produto" />
       <Input label="Rua" />
       <ContainerElements>
         <ContainerDistrict>
@@ -22,6 +21,8 @@ const Orders = () => {
           <Input label="Número" />
         </ContainerNumber>
       </ContainerElements>
+      <Input label="Complemento" />
+      <Input label="Produto" />
       <Checkbox label="Entrega" />
     </Container>
   );

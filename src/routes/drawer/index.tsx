@@ -8,7 +8,7 @@ const Drawer = createDrawerNavigator<AppRoutesProps>();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator initialRouteName="Products">
+    <Drawer.Navigator initialRouteName="Orders">
       <Drawer.Screen
         name="Products"
         component={Products}

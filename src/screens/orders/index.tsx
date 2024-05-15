@@ -3,10 +3,10 @@ import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { Alert, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Input from '../../components/input';
-import Checkbox from '../../components/checkbox';
 import Button from '../../components/button';
 import ModalFlatList from '../../components/modalFlatlist';
 import TextArea from '../../components/textarea';
+
 import {
   Container,
   ContainerNumber,
@@ -18,6 +18,7 @@ import {
   ContainerCheckBox,
   ContainerButton,
 } from './styles';
+import Switch from '../../components/switch';
 
 interface IProductOrder {
   id: number;
@@ -39,6 +40,7 @@ interface IOrder {
 
 const Orders = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [checkSwitch, setCheckSwitch] = useState(false);
 
   const form = useForm<IOrder>();
   const { control, handleSubmit } = form;
@@ -79,6 +81,7 @@ const Orders = () => {
       Alert.alert(error.message);
     }
   };
+
   const renderProduct = ({ item }: { item: IProductOrder }) => {
     return (
       <ItemContainer>
@@ -88,6 +91,14 @@ const Orders = () => {
         </ItemTouchable>
       </ItemContainer>
     );
+  };
+
+  const handlePressSwitch = () => {
+    setCheckSwitch(!checkSwitch);
+
+    const valueForm = !checkSwitch ? 1 : 0;
+
+    form.setValue('delivery', valueForm);
   };
 
   return (
@@ -182,10 +193,10 @@ const Orders = () => {
             control={control}
             name="delivery"
             render={() => (
-              <Checkbox
+              <Switch
                 label="Entrega"
-                onFocus={() => form.setValue('delivery', 1)}
-                onBlur={() => form.setValue('delivery', 0)}
+                enable={checkSwitch}
+                onPress={handlePressSwitch}
               />
             )}
           />

@@ -4,15 +4,15 @@ import { Container, InputContainer, InputText, Label } from './styles';
 
 interface InputProps extends TextInputProps {
   label: string;
-  lines: number;
+  line: number;
 }
 
-const TextArea = ({ label, lines, ...rest }: InputProps) => {
+const TextArea = ({ label, line, ...rest }: InputProps) => {
   return (
-    <Container numberOfLines={lines}>
+    <Container numberOfLines={line}>
       <InputContainer {...rest}>
         <Label>{label}</Label>
-        <InputText multiline numberOfLines={lines} />
+        <InputText multiline numberOfLines={line} {...rest} />
       </InputContainer>
     </Container>
   );

@@ -11,7 +11,7 @@ const Input = ({ label, ...rest }: InputProps) => {
     <Container>
       <InputContainer {...rest}>
         <Label>{label}</Label>
-        <InputText />
+        <InputText {...rest} />
       </InputContainer>
     </Container>
   );

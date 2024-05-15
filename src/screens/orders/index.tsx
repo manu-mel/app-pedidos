@@ -6,6 +6,7 @@ import Input from '../../components/input';
 import Checkbox from '../../components/checkbox';
 import Button from '../../components/button';
 import ModalFlatList from '../../components/modalFlatlist';
+import TextArea from '../../components/textarea';
 import {
   Container,
   ContainerNumber,
@@ -17,7 +18,6 @@ import {
   ContainerCheckBox,
   ContainerButton,
 } from './styles';
-import TextArea from '../../components/textarea';
 
 interface IProductOrder {
   id: number;
@@ -31,8 +31,8 @@ interface IOrder {
   street: string;
   district: string;
   number: string;
-  compliment: string;
-  delivery: boolean;
+  complement: string;
+  delivery: number;
   observation: string;
   products: Array<IProductOrder>;
 }
@@ -63,15 +63,18 @@ const Orders = () => {
     const index = products.findIndex(
       product => product.id === parseInt(item, 10),
     );
+
     const newProduct = products[index];
+
     const appendItem = { qty: 1, ...newProduct };
 
     append(appendItem);
   };
 
-  const handleSubmitOrder = () => {
+  const handleSubmitOrder = (order: IOrder) => {
     try {
-      // gravar
+      const { ...ord } = order;
+      console.log(ord);
     } catch (error: any) {
       Alert.alert(error.message);
     }
@@ -101,6 +104,7 @@ const Orders = () => {
           />
         )}
       />
+
       <Controller
         control={control}
         name="street"
@@ -113,6 +117,7 @@ const Orders = () => {
           />
         )}
       />
+
       <ContainerElements>
         <ContainerDistrict>
           <Controller
@@ -128,6 +133,7 @@ const Orders = () => {
             )}
           />
         </ContainerDistrict>
+
         <ContainerNumber>
           <Controller
             control={control}
@@ -143,9 +149,10 @@ const Orders = () => {
           />
         </ContainerNumber>
       </ContainerElements>
+
       <Controller
         control={control}
-        name="compliment"
+        name="complement"
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
             label="Complemento"
@@ -155,16 +162,17 @@ const Orders = () => {
           />
         )}
       />
+
       <Controller
         control={control}
         name="observation"
         render={({ field: { onChange, onBlur, value } }) => (
           <TextArea
-            lines={3}
             label="Observação"
             value={value}
             onChangeText={onChange}
             onBlur={onBlur}
+            line={2}
           />
         )}
       />
@@ -172,12 +180,17 @@ const Orders = () => {
         <ContainerCheckBox>
           <Controller
             control={control}
-            name="district"
-            render={({ field: { onChange } }) => (
-              <Checkbox label="Entrega" onPress={onChange} />
+            name="delivery"
+            render={() => (
+              <Checkbox
+                label="Entrega"
+                onFocus={() => form.setValue('delivery', 1)}
+                onBlur={() => form.setValue('delivery', 0)}
+              />
             )}
           />
         </ContainerCheckBox>
+
         <ContainerButton>
           <Button
             label="Adicionar Produto"
@@ -191,11 +204,13 @@ const Orders = () => {
         setIsVisible={setModalVisible}
         onItemClick={handleItemClick}
       />
+
       <FlatList
         data={fields}
         renderItem={renderProduct}
         keyExtractor={item => String(item.id)}
       />
+
       <View>
         <Button label="Gravar" onPress={handleSubmit(handleSubmitOrder)} />
       </View>

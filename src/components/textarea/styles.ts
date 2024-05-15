@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 
 interface Props {
-  textarea?: boolean;
+  numberOfLines: number;
 }
 
 export const Container = styled.View<Props>`
   align-items: center;
   width: 100%;
-  height: 65px;
+  height: ${({ numberOfLines }) => numberOfLines * 65}px;
 `;
 
 export const Label = styled.Text`
@@ -29,5 +29,5 @@ export const InputText = styled.TextInput<Props>`
   border: 1px;
   border-radius: 5px;
   border-color: ${({ theme }) => theme.colors.borderInput};
-  height: 36px;
+  height: ${({ numberOfLines }) => (numberOfLines + 1.5) * 36}px;
 `;

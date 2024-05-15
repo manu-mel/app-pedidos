@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { Alert, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import Input from '../../components/input';
 import Checkbox from '../../components/checkbox';
 import Button from '../../components/button';
@@ -9,12 +11,13 @@ import {
   ContainerNumber,
   ContainerElements,
   ContainerDistrict,
-  ModalItemContainer,
-  ModalItemTouchable,
-  ModalItemText,
+  ItemContainer,
+  ItemTouchable,
+  ItemText,
+  ContainerCheckBox,
+  ContainerButton,
 } from './styles';
-import { Alert } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import TextArea from '../../components/textarea';
 
 interface IProductOrder {
   id: number;
@@ -30,6 +33,7 @@ interface IOrder {
   number: string;
   compliment: string;
   delivery: boolean;
+  observation: string;
   products: Array<IProductOrder>;
 }
 
@@ -47,13 +51,22 @@ const Orders = () => {
   const { fields, append } = productsArray;
 
   const handleItemClick = (item: string) => {
-    const product = {
-      id: 1,
-      qty: 1,
-      description: item,
-    };
+    const products = [
+      { id: 1, description: 'Product 1' },
+      { id: 2, description: 'Product 2' },
+      { id: 3, description: 'Product 3' },
+      { id: 4, description: 'Product 4' },
+      { id: 5, description: 'Product 5' },
+      { id: 6, description: 'Product 6' },
+    ];
 
-    append(product);
+    const index = products.findIndex(
+      product => product.id === parseInt(item, 10),
+    );
+    const newProduct = products[index];
+    const appendItem = { qty: 1, ...newProduct };
+
+    append(appendItem);
   };
 
   const handleSubmitOrder = () => {
@@ -65,11 +78,12 @@ const Orders = () => {
   };
   const renderProduct = ({ item }: { item: IProductOrder }) => {
     return (
-      <ModalItemContainer>
-        <ModalItemTouchable>
-          <ModalItemText>{item.description}</ModalItemText>
-        </ModalItemTouchable>
-      </ModalItemContainer>
+      <ItemContainer>
+        <ItemTouchable>
+          <ItemText>Produto: {item.description}</ItemText>
+          <ItemText>Quantidade: {item.qty}</ItemText>
+        </ItemTouchable>
+      </ItemContainer>
     );
   };
 
@@ -143,14 +157,35 @@ const Orders = () => {
       />
       <Controller
         control={control}
-        name="district"
-        render={({ field: { onChange } }) => (
-          <Checkbox label="Entrega" onPress={onChange} />
+        name="observation"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextArea
+            lines={3}
+            label="Observação"
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+          />
         )}
       />
+      <ContainerElements>
+        <ContainerCheckBox>
+          <Controller
+            control={control}
+            name="district"
+            render={({ field: { onChange } }) => (
+              <Checkbox label="Entrega" onPress={onChange} />
+            )}
+          />
+        </ContainerCheckBox>
+        <ContainerButton>
+          <Button
+            label="Adicionar Produto"
+            onPress={() => setModalVisible(true)}
+          />
+        </ContainerButton>
+      </ContainerElements>
 
-      <Button label="Adicionar Produto" onPress={() => setModalVisible(true)} />
-      <Button label="Gravar" onPress={handleSubmit(handleSubmitOrder)} />
       <ModalFlatList
         isVisible={modalVisible}
         setIsVisible={setModalVisible}
@@ -161,6 +196,9 @@ const Orders = () => {
         renderItem={renderProduct}
         keyExtractor={item => String(item.id)}
       />
+      <View>
+        <Button label="Gravar" onPress={handleSubmit(handleSubmitOrder)} />
+      </View>
     </Container>
   );
 };

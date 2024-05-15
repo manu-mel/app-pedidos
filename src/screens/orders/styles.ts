@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  padding-top: 10px;
   justify-content: center;
   height: 100%;
 `;
@@ -8,6 +9,8 @@ export const Container = styled.View`
 export const ContainerElements = styled.View`
   flex-direction: row;
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const ContainerDistrict = styled.View`
@@ -17,7 +20,18 @@ export const ContainerDistrict = styled.View`
 export const ContainerNumber = styled.View`
   flex: 1;
 `;
-export const ModalItemContainer = styled.View`
+
+export const ContainerCheckBox = styled.View`
+  flex: 1;
+  padding-left: 15px;
+`;
+
+export const ContainerButton = styled.View`
+  flex: 2;
+  padding-right: 8px;
+`;
+
+export const ItemContainer = styled.View`
   width: 100%;
   margin: 3px 0;
   border-bottom-width: 1px;
@@ -25,11 +39,11 @@ export const ModalItemContainer = styled.View`
   padding: 0 20px;
 `;
 
-export const ModalItemTouchable = styled.TouchableOpacity`
+export const ItemTouchable = styled.TouchableOpacity`
   padding: 13px 0;
 `;
 
-export const ModalItemText = styled.Text`
+export const ItemText = styled.Text`
   color: ${({ theme }) => theme.colors.textModal};
   font-size: 18px;
 `;

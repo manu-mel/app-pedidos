@@ -43,7 +43,8 @@ const ModalFlatList = ({
         <ModalItemTouchable
           onPress={() => {
             setIsVisible(false);
-            onItemClick(String(item.id));
+            //onItemClick(String(item.id));
+            onItemClick(item.description);
           }}>
           <ModalItemText>{item.description}</ModalItemText>
         </ModalItemTouchable>
@@ -64,7 +65,6 @@ const ModalFlatList = ({
         <Container>
           <Input label="Produto" />
           <FlatList
-            // eslint-disable-next-line react-native/no-inline-styles
             style={{ width: '100%' }}
             data={products}
             renderItem={renderProduct}

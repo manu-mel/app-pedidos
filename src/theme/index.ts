@@ -6,6 +6,10 @@ const theme = {
     labelButton: '#FFFFFF',
     checkboxBackgroundChecked: '#01FF00',
     checkboxBackgroundUnchecked: '#FF0000',
+    backgroundModal: '#00000053',
+    containerModal: '#FFF',
+    containerItemModal: '#e3e2e2',
+    textModal: '#000000',
   },
 };
 

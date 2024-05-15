@@ -5,11 +5,12 @@ import { Container, InputContainer, InputText, Label } from './styles';
 interface InputProps extends TextInputProps {
   label: string;
 }
+
 const Input = ({ label, ...rest }: InputProps) => {
   return (
     <Container>
-      <Label>{label}</Label>
       <InputContainer {...rest}>
+        <Label>{label}</Label>
         <InputText />
       </InputContainer>
     </Container>

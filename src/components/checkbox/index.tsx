@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { CheckboxElement, Container, ContainerElements, Label } from './styles';
 import { TouchableOpacityProps } from 'react-native';
+import { CheckboxElement, Container, ContainerElements, Label } from './styles';
 
 interface CheckboxProps extends TouchableOpacityProps {
   label: string;

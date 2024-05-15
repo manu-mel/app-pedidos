@@ -9,7 +9,6 @@ export const Container = styled.View`
 export const Label = styled.Text`
   font-size: 18px;
   width: 100%;
-  padding: 0 20px;
   color: ${({ theme }) => theme.colors.labelInput};
 `;
 

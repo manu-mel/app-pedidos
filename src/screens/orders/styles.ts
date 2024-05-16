@@ -4,6 +4,7 @@ export const Container = styled.View`
   padding-top: 10px;
   justify-content: center;
   height: 100%;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const ContainerElements = styled.View`
@@ -34,13 +35,13 @@ export const ContainerButton = styled.View`
 export const ItemContainer = styled.View`
   width: 100%;
   margin: 3px 0;
-  border-bottom-width: 1px;
-  border-bottom-color: ${({ theme }) => theme.colors.containerItemModal};
   padding: 0 20px;
 `;
 
 export const ItemTouchable = styled.TouchableOpacity`
-  padding: 13px 0;
+  padding: 13px;
+  background-color: ${({ theme }) => theme.colors.itemBackground};
+  border-radius: 5px;
 `;
 
 export const ItemText = styled.Text`

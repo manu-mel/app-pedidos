@@ -6,7 +6,8 @@ import Input from '../../components/input';
 import Button from '../../components/button';
 import ModalFlatList from '../../components/modalFlatlist';
 import TextArea from '../../components/textarea';
-
+import Switch from '../../components/switch';
+import ModalQty from '../../components/modalQty';
 import {
   Container,
   ContainerNumber,
@@ -18,7 +19,6 @@ import {
   ContainerCheckBox,
   ContainerButton,
 } from './styles';
-import Switch from '../../components/switch';
 
 interface IProductOrder {
   id: number;
@@ -40,6 +40,7 @@ interface IOrder {
 
 const Orders = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalQtyVisible, setModalQtyVisible] = useState(false);
   const [checkSwitch, setCheckSwitch] = useState(false);
 
   const form = useForm<IOrder>();
@@ -84,12 +85,21 @@ const Orders = () => {
 
   const renderProduct = ({ item }: { item: IProductOrder }) => {
     return (
-      <ItemContainer>
-        <ItemTouchable>
-          <ItemText>Produto: {item.description}</ItemText>
-          <ItemText>Quantidade: {item.qty}</ItemText>
-        </ItemTouchable>
-      </ItemContainer>
+      <>
+        <ItemContainer>
+          <ItemTouchable onPress={() => setModalQtyVisible(true)}>
+            <ItemText>Produto: {item.description}</ItemText>
+            <ItemText>Quantidade: {item.qty}</ItemText>
+          </ItemTouchable>
+        </ItemContainer>
+
+        <ModalQty
+          isVisible={modalQtyVisible}
+          setIsVisible={setModalQtyVisible}
+          onItemClick={handleItemClick}
+          itemQty={item.qty}
+        />
+      </>
     );
   };
 

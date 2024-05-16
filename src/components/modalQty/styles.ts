@@ -13,7 +13,6 @@ export const Container = styled.View`
   padding: 15px;
   max-height: 600px;
   width: 350px;
-  background-color: ${({ theme }) => theme.colors.itemBackground};
 
   ${css`
     box-shadow: 0px 1px 3px #0000005a;

@@ -22,10 +22,10 @@ export const SwitchComponent = styled.TouchableOpacity<Props>`
   ${({ enabled, theme }) =>
     enabled
       ? css`
-          background-color: #0ee400;
+          background-color: ${theme.colors.switchEnabledBackground};
         `
       : css`
-          background-color: ${theme.colors.containerItemModal};
+          background-color: ${theme.colors.switchDisabledBackground};
         `}
 `;
 

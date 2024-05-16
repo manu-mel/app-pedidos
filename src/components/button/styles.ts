@@ -6,12 +6,12 @@ export const Container = styled.View`
 `;
 
 export const ButtonElement = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.colors.backgroundButton};
-  border-radius: 10px;
   width: 90%;
   height: 40px;
   padding: 5px;
   margin: 10px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.backgroundButton};
 `;
 
 export const Label = styled.Text`

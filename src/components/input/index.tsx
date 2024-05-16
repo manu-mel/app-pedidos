@@ -9,7 +9,7 @@ interface InputProps extends TextInputProps {
 const Input = ({ label, ...rest }: InputProps) => {
   return (
     <Container>
-      <InputContainer {...rest}>
+      <InputContainer>
         <Label>{label}</Label>
         <InputText {...rest} />
       </InputContainer>

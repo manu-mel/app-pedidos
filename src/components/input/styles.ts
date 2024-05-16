@@ -24,10 +24,13 @@ export const InputContainer = styled.View`
 
 export const InputText = styled.TextInput<Props>`
   width: 100%;
+  height: 36px;
   font-size: 16px;
   padding: 0 5px;
-  border: 1px;
+  box-shadow: 0px 1px 3px #0000005a;
+  border-color: #727272;
+  elevation: 3;
   border-radius: 5px;
   border-color: ${({ theme }) => theme.colors.borderInput};
-  height: 36px;
+  background-color: ${({ theme }) => theme.colors.backgroundInput};
 `;

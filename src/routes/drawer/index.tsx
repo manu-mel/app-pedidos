@@ -27,9 +27,6 @@ const DrawerNavigation = () => {
         headerTitleStyle: {
           color: theme.colors.labelInput,
         },
-        drawerStyle: {
-          backgroundColor: theme.colors.labelInput,
-        },
       }}>
       <Drawer.Screen
         name="Products"

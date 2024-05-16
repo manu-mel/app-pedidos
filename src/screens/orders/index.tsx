@@ -37,6 +37,17 @@ interface IOrder {
   observation: string;
   products: Array<IProductOrder>;
 }
+const formDefault = {
+  orderId: 0,
+  customer: '',
+  street: '',
+  district: '',
+  number: '',
+  complement: '',
+  delivery: 0,
+  observation: '',
+  products: [],
+};
 
 const Orders = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -77,6 +88,11 @@ const Orders = () => {
   const handleSubmitOrder = (order: IOrder) => {
     try {
       const { ...ord } = order;
+
+      form.reset(formDefault);
+
+      setCheckSwitch(!checkSwitch);
+
       console.log(ord);
     } catch (error: any) {
       Alert.alert(error.message);

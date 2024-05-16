@@ -29,4 +29,5 @@ export const InputText = styled.TextInput<Props>`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.backgroundInput};
   height: ${({ numberOfLines }) => (numberOfLines + 0.8) * 36}px;
+  color: ${({ theme }) => theme.colors.labelInput};
 `;

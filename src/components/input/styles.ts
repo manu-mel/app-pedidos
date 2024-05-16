@@ -33,4 +33,5 @@ export const InputText = styled.TextInput<Props>`
   border-radius: 5px;
   border-color: ${({ theme }) => theme.colors.borderInput};
   background-color: ${({ theme }) => theme.colors.backgroundInput};
+  color: ${({ theme }) => theme.colors.labelInput};
 `;
